@@ -176,6 +176,19 @@ Stream #0:4(jpn): Subtitle: subrip
 
 其中'subrip'为字幕类型，对应的后缀名为'.srt'
 
+# 日志文件
+每次运行都会生成csv的日志文件，每次调用ffmpeg结束后都会判断输出文件是否存在以检查转换是否出错，若不能自行解决请提出问题。
+当然，你也可以关闭日志文件（不推荐）
+```py
+> writeLog = False
+```
+或
+```shell
+> silence.mkvtool.exe -l
+or
+> silence.mkvtool.exe --writelog
+```
+
 # 食用（生吃）：
 ```shell
 > python silence.mkvtool.py[ argv]
