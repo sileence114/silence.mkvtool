@@ -133,7 +133,48 @@ Hitokoto = False
 or
 > silence.mkvtool.exe --hitokoto
 ```
-(这是学习urllib模块时的副产物。)
+(该功能是学习urllib模块时的副产物。)
+
+# 字体附件与字幕轨道
+因资料查找不够充足，故将常见的字体后缀名、MKV封装的字幕类型封装入程序，若有需要请另行在setting.py中补充。
+```py
+# 字体文件后缀名（错删少补）
+# 格式：['后缀名A', '后缀名B']
+# 请将常见文件格式前置以提高运行效率
+fontFiles = [
+    'ttf', 'ttc', 'otf', 'pfa', 'dfont', 'vlw', 'txf', 'woff',
+    'vnf', 'ytf', 'cha', 'gdr', 'pfb', 'tte', 'afm', 'pfr',
+    'xfn', 'gxf', 't65', 'sfd', 'fon', 'mxf', 'pfm', 'vfb',
+    'gf', 'amfm', 'acfm', 'xft', 'pmt', 'f3f', 'chr', 'etx',
+    'pk', 'mcf', 'suit', 'fnt', 'ffil', 'compositefont', 
+    'euf', 'sfp', 'mf', 'lwfn', 'nftr', 'abf', 'eot', 'fot',
+    'bdf', 'tfm'
+]
+
+# 字幕格式与后缀名对照表
+# 格式：{'A字幕文件类型': 'A字幕文件后缀名', 'B字幕文件类型': 'B字幕文件后缀名', }
+subtitleSuffixDict = {
+    'ass': 'ass',
+    'subrip': 'srt',
+    'hdmv_pgs_subtitle': 'sup'
+}
+```
+其中：字幕文件类型使用ffmpeg查看
+```shell
+> ffmpeg -i Fate stay night[HF] I.presage flower.mkv
+......
+Stream #0:2(chi): Subtitle: hdmv_pgs_subtitle (default)
+......
+Stream #0:3(eng): Subtitle: ass
+......
+Stream #0:4(jpn): Subtitle: subrip
+......
+```
+如：
+
+流 #0:轨道4(日语): 字幕： subrip
+
+其中'subrip'为字幕类型，对应的后缀名为'.srt'
 
 # 食用（生吃）：
 ```shell
